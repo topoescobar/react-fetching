@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import User from "./User";
 import axios from "axios";
 import AddUser from "./AddUser";
+import { getUsers } from "./services/getUsers";
 
 export default function App() {
   const [usersArr, setUsers] = useState([]);
@@ -28,13 +29,11 @@ export default function App() {
     setLoading(true);
     // setTimeout para simular una carga asincrona
     setTimeout(() => {
-      axios
-        .get("https://jsonplaceholder.typicode.com/users")
-        .then((response) => {
-          console.log("response", response.data);
-          setUsers(response.data);
-          setLoading(false);
-        });
+      getUsers().then((usersData) => {
+        console.log("users from service", usersData);
+        setUsers(usersData);
+        setLoading(false);
+      });
     }, 1200);
   }, []);
 
