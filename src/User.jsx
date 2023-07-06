@@ -3,7 +3,7 @@ export default function User({ user }) {
     <div>
       <p>
         {" "}
-        Nombre: {user.name}, Email: {user.email}, Compañia: {user.company.name}{" "}
+        Nombre: {user.name}, Email: {user.email}
       </p>
     </div>
   );

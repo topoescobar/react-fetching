@@ -38,18 +38,18 @@ export default function App() {
     }, 1200);
   }, []);
 
-  const addUser = (name, email) => {
-    //setUsers[]
+  const addUser = (user) => {
+    setUsers([...usersArr, user]);
   };
 
   return (
     <div className="App">
       <h1>Usuarios</h1>
-      <AddUser />
+      <AddUser addUser={addUser} />
       {loading && "Cargando..."}
       <ul>
         {usersArr.map((user) => (
-          <li key={user.id}>
+          <li key={user.email}>
             <User user={user} />
           </li>
         ))}
