@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useState } from "react";
+import { addUserService } from "./services/addUser";
 
 export default function AddUser({ addUser }) {
   const [user, setUser] = useState({
@@ -17,17 +17,15 @@ export default function AddUser({ addUser }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //si devuelve status 201 la peticion se envio correctamente
-    axios
-      .post("https://jsonplaceholder.typicode.com/users", user)
-      .then((response) => {
-        console.log("data modificada", response.data);
-        addUser(response.data);
-        setUser({
-          name: "",
-          email: ""
-        });
+
+    addUserService(user).then((response) => {
+      console.log("data modificada", response);
+      addUser(response);
+      setUser({
+        name: "",
+        email: ""
       });
+    });
 
     //addUser(user);
   };
